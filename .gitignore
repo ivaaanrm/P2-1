@@ -10,3 +10,5 @@ __MAC*
 !/src/
 !/img/
 !/db.v4/
+
+scripts/run_vad.sh
