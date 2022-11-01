@@ -226,9 +226,9 @@ foreach my $filelab (@ARGV) {
     die "VAD file not found: $filevad\n" 
 	unless -f $filevad;
 
-    #print "**************** $filelab ****************\n";
+    print "**************** $filelab ****************\n";
     my %statistics = compare_labs($filelab, $filevad);
-    #print_statistics(\%statistics, $filelab);
+    print_statistics(\%statistics, $filelab);
     acum_statistics(\%acum_statistics, \%statistics);
 }
 

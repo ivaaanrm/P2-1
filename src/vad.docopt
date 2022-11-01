@@ -9,8 +9,8 @@ Options:
    -i FILE, --input-wav=FILE   WAVE file for voice activity detection
    -o FILE, --output-vad=FILE  Label file with the result of VAD
    -w FILE, --output-wav=FILE  WAVE file with silences cleared
-   -1 REAL, --alpha1=REAL  First threshold increment [Default: 0]
-   -2 REAL, --alpha2=REAL  Second threshold increment [Default: 0]
+   -1 REAL, --alpha1=REAL  First threshold increment [Default: 1]
+   -2 REAL, --alpha2=REAL  Second threshold increment [Default: 10]
    -v, --verbose  Show debug information
    -h, --help     Show this screen
    --version      Show the version of the project
