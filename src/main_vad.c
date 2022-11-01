@@ -80,6 +80,7 @@ int main(int argc, char *argv[]) {
   for (i=0; i< frame_size; ++i) buffer_zeros[i] = 0.0F;
 
   frame_duration = (float) frame_size/ (float) sf_info.samplerate;
+
   last_state = ST_UNDEF;
 
   for (t = last_t = 0; ; t++) { /* For each frame ... */
@@ -117,8 +118,7 @@ int main(int argc, char *argv[]) {
   state = vad_close(vad_data);
   /* TODO: what do you want to print, for last frames? */
   if (t != last_t)
-    if (state == ST_MBS) state = ST_VOICE;
-    else if (state == ST_MBV) state = ST_SILENCE;
+    if (state == ST_MBS || state == ST_MBV) state = last_state;
     fprintf(vadfile, "%.5f\t%.5f\t%s\n", last_t * frame_duration, t * frame_duration + n_read / (float) sf_info.samplerate, state2str(state));
 
   /* clean up: free memory, close open files */

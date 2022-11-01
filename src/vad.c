@@ -6,7 +6,7 @@
 #include "vad.h"
 
 const float FRAME_TIME = 10.0F; /* in ms. */
-const int MAX_TRAMAS = 100;
+const int MAX_TRAMAS = 3;
 
 /* 
  * As the output state is only ST_VOICE, ST_SILENCE, or ST_UNDEF,
@@ -104,38 +104,37 @@ VAD_STATE vad(VAD_DATA *vad_data, float *x) {
     break;
 
   case ST_SILENCE:
-    if (f.p > vad_data->k2)
+    if (f.p > vad_data->k1){
       vad_data->state = ST_MBV;
-    else if (f.p > vad_data->k1){
-      vad_data->N_TRAMAS --;
-      vad_data->state = ST_MBS;}
+      vad_data->N_TRAMAS --;}
     break;
 
   case ST_VOICE:
-    if (f.p < vad_data->k1)
+    if (f.p < vad_data->k2){
       vad_data->state = ST_MBS;
-    else if (f.p < vad_data->k2)
-      vad_data->state = ST_MBV;
+      vad_data->N_TRAMAS --;}
     break;
 
   case ST_MBV:
-    if (f.p > vad_data->k2)
-      vad_data->state = ST_VOICE;
+    if (f.p > vad_data->k2){
+      vad_data->N_TRAMAS = MAX_TRAMAS;
+      vad_data->state = ST_VOICE;}
     else if ((f.p < vad_data->k1) || (vad_data->N_TRAMAS == 0)){
-      vad_data->state = ST_SILENCE;
-      vad_data->N_TRAMAS = MAX_TRAMAS;}
-    else
-      vad_data->N_TRAMAS--;
+      vad_data->N_TRAMAS = MAX_TRAMAS;
+      vad_data->state = ST_SILENCE;}
+    else{
+      vad_data->N_TRAMAS--;}
     break;
   
   case ST_MBS:
-    if ((f.p > vad_data->k2) || (vad_data->N_TRAMAS == 0)){
-      vad_data->state = ST_VOICE;
-      vad_data->N_TRAMAS = MAX_TRAMAS;}
-    else if (f.p < vad_data->k1)
-      vad_data->state = ST_SILENCE;
-    else
-      vad_data->N_TRAMAS--;
+    if (f.p < vad_data->k1){
+      vad_data->N_TRAMAS = MAX_TRAMAS;
+      vad_data->state = ST_SILENCE;}
+    else if ((f.p > vad_data->k2) || (vad_data->N_TRAMAS == 0)){
+      vad_data->N_TRAMAS = MAX_TRAMAS;
+      vad_data->state = ST_VOICE;}
+    else{
+      vad_data->N_TRAMAS--;}
     break;
 
   case ST_UNDEF:
