@@ -61,7 +61,6 @@ VAD_DATA * vad_open(float rate, float alpha1, float alpha2) {
   vad_data->frame_length = rate * FRAME_TIME * 1e-3;
   vad_data->alpha1 = alpha1;
   vad_data->alpha2 = alpha2;
-  vad_data->counter = 0;
   vad_data->N_TRAMAS = MAX_TRAMAS;
 
   return vad_data;
