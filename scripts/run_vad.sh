@@ -7,11 +7,11 @@
 HOMELOCAL=$HOME/Desktop/Uni/3B          # Path to your home directory !!!
 DIR_P2=$HOMELOCAL/PAV/P2-1
 DB=$DIR_P2/db.v4
-CMD="$DIR_P2/bin/vad --alpha1=${1:-8} --alpha2=${2:-8}"
+CMD="$DIR_P2/bin/vad --alpha1=${1:-5.61} --alpha2=${2:-5.61}"
 
 for filewav in $DB/*/*wav; do
 #    echo
-    echo "**************** $filewav ****************"
+    #echo "**************** $filewav ****************"
     if [[ ! -f $filewav ]]; then 
 	    echo "Wav file not found: $filewav" >&2
 	    exit 1

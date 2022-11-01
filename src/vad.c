@@ -6,7 +6,7 @@
 #include "vad.h"
 
 const float FRAME_TIME = 10.0F; /* in ms. */
-const int MAX_TRAMAS = 10;
+const int MAX_TRAMAS = 100;
 
 /* 
  * As the output state is only ST_VOICE, ST_SILENCE, or ST_UNDEF,
@@ -15,7 +15,7 @@ const int MAX_TRAMAS = 10;
  */
 
 const char *state_str[] = {
-  "UNDEF", "S", "V", "INIT"
+  "UNDEF", "S", "V", "MBV", "MBS", "INIT"
 };
 
 const char *state2str(VAD_STATE st) {
@@ -62,9 +62,6 @@ VAD_DATA * vad_open(float rate, float alpha1, float alpha2) {
   vad_data->alpha1 = alpha1;
   vad_data->alpha2 = alpha2;
   vad_data->counter = 0;
-  vad_data->MAX_MB = 5;
-  vad_data->MIN_VOICE = 30;
-  vad_data->MIN_SILENCE = 10;
   vad_data->N_TRAMAS = MAX_TRAMAS;
 
   return vad_data;

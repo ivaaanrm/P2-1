@@ -22,9 +22,6 @@ typedef struct {
   float alpha1;
   float alpha2;
   float counter;
-  float MAX_MB;
-  float MIN_VOICE;
-  float MIN_SILENCE;
   float N_TRAMAS;
 } VAD_DATA;
 
