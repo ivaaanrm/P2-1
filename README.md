@@ -104,6 +104,8 @@ Ejercicios
 - Etiquete manualmente los segmentos de voz y silencio del fichero grabado al efecto. Inserte, a 
   continuación, una captura de `wavesurfer` en la que se vea con claridad la señal temporal, el contorno de
   potencia y la tasa de cruces por cero, junto con el etiquetado manual de los segmentos.
+  
+<img width="1440" alt="image" src="https://user-images.githubusercontent.com/67743899/199305257-aabd86c4-5ca2-43d4-a838-77c8431958b3.png">
 
 
 - A la vista de la gráfica, indique qué valores considera adecuados para las magnitudes siguientes:
@@ -111,24 +113,38 @@ Ejercicios
 	* Incremento del nivel potencia en dB, respecto al nivel correspondiente al silencio inicial, para
 	  estar seguros de que un segmento de señal se corresponde con voz.
 
+		- Observamos que apartir de 20dB podemos considerar voz.
+
 	* Duración mínima razonable de los segmentos de voz y silencio.
+	
+		- Medio segundo es una duración razonable para segmentos de voz y silencio.
 
 	* ¿Es capaz de sacar alguna conclusión a partir de la evolución de la tasa de cruces por cero?
+
+		- Vemos que cuando hay voz la tasa de cruces por zero es casi nula.
 
 
 ### Desarrollo del detector de actividad vocal
 
 - Complete el código de los ficheros de la práctica para implementar un detector de actividad vocal en
   tiempo real tan exacto como sea posible. Tome como objetivo la maximización de la puntuación-F `TOTAL`.
+  
+  <img width="783" alt="image" src="https://user-images.githubusercontent.com/67743899/199309971-88ef655d-4982-4e9b-8209-1f07c2dab368.png">
 
 - Inserte una gráfica en la que se vea con claridad la señal temporal, el etiquetado manual y la detección
   automática conseguida para el fichero grabado al efecto. 
+  
+  <img width="1440" alt="image" src="https://user-images.githubusercontent.com/67743899/199309586-98b69a03-d748-4a01-8c52-2c7c83619ae7.png">
 
 - Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
+
+	- Existe un pequeño error de predicción dado a nuestro algoritmo de clasificación.
 
 - Evalúe los resultados sobre la base de datos `db.v4` con el script `vad_evaluation.pl` e inserte a 
   continuación las tasas de sensibilidad (*recall*) y precisión para el conjunto de la base de datos (sólo
   el resumen).
+
+<img width="783" alt="image" src="https://user-images.githubusercontent.com/67743899/199310772-c45c251d-1674-4ec1-80ed-3c10d1455219.png">
 
 
 ### Trabajos de ampliación
@@ -138,17 +154,22 @@ Ejercicios
 - Si ha desarrollado el algoritmo para la cancelación de los segmentos de silencio, inserte una gráfica en
   la que se vea con claridad la señal antes y después de la cancelación (puede que `wavesurfer` no sea la
   mejor opción para esto, ya que no es capaz de visualizar varias señales al mismo tiempo).
+  
+ ![output](https://user-images.githubusercontent.com/67743899/199314299-04cfe101-a9b6-47ae-8e76-54bc8c4a701d.jpeg)
+
 
 #### Gestión de las opciones del programa usando `docopt_c`
 
 - Si ha usado `docopt_c` para realizar la gestión de las opciones y argumentos del programa `vad`, inserte
   una captura de pantalla en la que se vea el mensaje de ayuda del programa.
-
+  
+<img width="607" alt="image" src="https://user-images.githubusercontent.com/67743899/199314493-4e030b4f-3f09-41ad-9031-a88b6843b792.png">
 
 ### Contribuciones adicionales y/o comentarios acerca de la práctica
 
 - Indique a continuación si ha realizado algún tipo de aportación suplementaria (algoritmos de detección o 
   parámetros alternativos, etc.).
+  
 
 - Si lo desea, puede realizar también algún comentario acerca de la realización de la práctica que
   considere de interés de cara a su evaluación.
