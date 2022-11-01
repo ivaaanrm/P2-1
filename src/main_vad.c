@@ -117,8 +117,8 @@ int main(int argc, char *argv[]) {
   state = vad_close(vad_data);
   /* TODO: what do you want to print, for last frames? */
   if (t != last_t)
-    if (state == ST_MBS) state = ST_SILENCE;
-    else if (state == ST_MBV) state = ST_VOICE;
+    if (state == ST_MBS) state = ST_VOICE;
+    else if (state == ST_MBV) state = ST_SILENCE;
     fprintf(vadfile, "%.5f\t%.5f\t%s\n", last_t * frame_duration, t * frame_duration + n_read / (float) sf_info.samplerate, state2str(state));
 
   /* clean up: free memory, close open files */
